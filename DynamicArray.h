@@ -1,0 +1,146 @@
+#ifndef DYNAMICARRAY_H
+#define DYNAMICARRAY_H
+
+
+#include <string>
+#include <sstream>
+using namespace std;
+
+const string SIZE_LESS_00 = "Size is less than 0";
+const string INDEX_OUT_OF_RANGE0 = "Index out of range";
+
+template <typename T>
+class DynamicArray {
+private:
+    T* data = nullptr;
+    int size;
+public:
+    //Contructor
+    DynamicArray(){
+        size = 0;
+    };
+    DynamicArray(int size){
+        if(size < 0){
+            throw length_error(SIZE_LESS_00);
+        };
+        data = new T[size];
+        this->size = size;
+    };
+    DynamicArray(T* items, int count){
+        if(count < 0){
+            throw length_error(SIZE_LESS_00);
+        };
+        data = new T[count];
+        size = count;
+        for(int i = 0; i < count; i++)
+            data[i] = items[i];
+    };
+    DynamicArray(DynamicArray <T> &dynamicArray){
+        data = new T[size];
+        size = dynamicArray.size;
+        for(int i = 0; i<size; i++){
+            data[i] = dynamicArray.data[i];
+        };
+    };
+    DynamicArray(DynamicArray<T>* dynArr){
+        size = dynArr->size;
+        data = dynArr->data;
+    }
+
+
+    //Destructor
+    ~DynamicArray(){
+        delete[] data;
+        size = 0;
+    };
+    void Delete_DynamicArray(){
+        delete[] data;
+        size = 0;
+    }
+    //Function for cast int to string
+    string toString(int val)
+    {
+        ostringstream oss;
+        oss << val;
+        return oss.str();
+    }
+    //Decomposition
+    T Get(int index){
+        if(index < 0 || index >= size){
+            string msg = INDEX_OUT_OF_RANGE0 + ". Get -> " + toString(index) + " but len -> " + toString(size);
+            throw out_of_range(msg);
+        };
+        return data[index];
+    };
+
+    int GetSize(){
+        return size;
+    }
+
+
+    //Operations
+    void Set(int index, T value){
+        if (index < 0 || index >= size) {
+            string msg = INDEX_OUT_OF_RANGE0 + ". Get -> " + toString(index) + " but len -> " + toString(size);
+            throw out_of_range(msg);
+        }
+        data[index] = value;
+    };
+    void Resize(int newSize){
+        if (newSize < 0){
+            throw out_of_range(INDEX_OUT_OF_RANGE0);
+        };// wrong len
+
+        if (newSize == 0){
+            delete[] data;
+            data = nullptr;
+            size = 0;
+            return;
+        }// len = 0 => delete
+
+        if (newSize == size){
+            return;
+        }// newSize is the same as len
+
+        if (newSize < size){
+            T* new_data = new T[newSize];
+            for (int i = 0; i < newSize; i++){
+                new_data[i] = data[i];
+            }
+            delete[] data;
+            size = newSize;
+            data = new_data;
+            return;
+        }// shortening array
+
+        if (newSize > 0 && size == 0){
+            T* new_data = new T[newSize];
+            delete[] data;
+            size = newSize;
+            data = new_data;
+        }//
+
+        if (newSize > size){
+            T* new_data = new T[newSize];
+            for (int i = 0; i < size; i++){
+                new_data[i] = data[i];
+            }
+            delete[] data;
+            size = newSize;
+            data = new_data;
+            return;
+        }// increase length of array
+    };
+
+
+    //Operators
+    T operator[] (int index){
+        if (index < 0 || index >= this->size){
+            throw out_of_range(INDEX_OUT_OF_RANGE0);
+        }
+        return this->Get(index);
+    };
+
+};
+
+#endif //DYNAMICARRAY_H
