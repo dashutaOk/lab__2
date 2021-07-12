@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
@@ -6,6 +7,7 @@
 #include <stdexcept>
 #include <string>
 #include <sstream>
+
 using namespace std;
 const string INDEX_OUT_OF_RANGE = "Index out of range";
 const string SIZE_LESS_0 = "Size is less than 0";

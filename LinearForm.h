@@ -1,8 +1,8 @@
+#pragma once
 #ifndef LAB_2_LINEARFORM_H
 #define LAB_2_LINEARFORM_H
 
-
-#include <stdio.h>
+#include <cstdio>
 #include <iomanip>
 #include <iostream>
 #include <cmath>

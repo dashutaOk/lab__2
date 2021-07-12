@@ -1,6 +1,6 @@
+#pragma once
 #ifndef DYNAMICARRAY_H
 #define DYNAMICARRAY_H
-
 
 #include <string>
 #include <sstream>

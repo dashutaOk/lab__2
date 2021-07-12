@@ -1,5 +1,7 @@
+#pragma once
 #ifndef LAB_2_VECTOR_TEST_H
 #define LAB_2_VECTOR_TEST_H
+
 
 #include <stdio.h>
 #include "vector.h"

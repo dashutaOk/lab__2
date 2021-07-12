@@ -66,7 +66,7 @@ void LinkedListTest(){
     float arr1[] = {5.5, 6.6, -7.8, -9.9, 0};
     auto* list1 = new LinkedList<float>(arr1, 5);
     assert(list1->GetLength() == 5);
-    assert(round_float(list1->Get(1), 1) == round_float(6.6, 1));
+    assert(std::abs(list1->Get(1) - 6.6) < 1);
     list1->Delete_LinkedList();
 
     auto* list2 = new LinkedList<float>;
@@ -84,27 +84,27 @@ void LinkedListTest(){
 
     float arr4[] = {5.5, 6.6, -7.8, -9.9, 0};
     auto* list4 = new LinkedList<float>(arr4, 5);
-    assert(round_float(list4->GetFirst(), 2) == round_float(5.5, 2));
+    assert(std::abs(list4->GetFirst() - 5.5) < 2);
     list4->Delete_LinkedList();
 
     float arr5[] = {5.5, 6.6, -7.8, -9.9, 0};
     auto* list5 = new LinkedList<float>(arr5, 5);
-    assert(round_float(list5->GetLast(), 2) == round_float(0, 2));
+    assert(std::abs(list5->GetLast() - 0) < 2);
     list5->Delete_LinkedList();
 
     float arr6[] = {5.5, 6.6, -7.8, -9.9, 0};
     auto* list6 = new LinkedList<float>(arr6, 5);
-    assert(round_float(list6->Get(0), 2) == round_float(5.5, 2));
-    assert(round_float(list6->Get(1), 2) == round_float(6.6, 2));
-    assert(round_float(list6->Get(3), 2) == round_float(-9.9, 2));
+    assert(std::abs(list6->Get(0) - 5.5) < 2);
+    assert(std::abs(list6->Get(1) - 6.6) < 2);
+    assert(std::abs(list6->Get(3) - (-9.9)) < 2);
     list6->Delete_LinkedList();
 
     float arr7[] = {5.5, 6.6, -7.8, -9.9, 0};
     auto* list1_2 = new LinkedList<float>(arr7, 5);
     auto* list2_2 = list1_2->GetSublist(1, 4);
-    assert(round_float(list2_2->Get(0), 2) == round_float(6.6, 2));
-    assert(round_float(list2_2->Get(1), 2) == round_float(-7.8, 2));
-    assert(round_float(list2_2->Get(2), 2) == round_float(-9.9, 2));
+    assert(std::abs(list2_2->Get(0) - 6.6) < 2);
+    assert(std::abs(list2_2->Get(1) - (-7.8)) < 2);
+    assert(std::abs(list2_2->Get(3) - (-9.9)) < 2);
     assert(list2_2->GetLength() == 3);
     list1_2->Delete_LinkedList();
     list2_2->Delete_LinkedList();
@@ -118,8 +118,8 @@ void LinkedListTest(){
     auto* list1_4 = new LinkedList<float>(arr9, 5);
     list1_4->Append(-10.5);
     assert(list1_4->GetLength() == 6);
-    assert(round_float(list1_4->Get(5), 2) == round_float(-10.5, 2));
-    assert(round_float(list1_4->Get(4), 2) == round_float(0, 2));
+    assert(std::abs(list1_4->Get(5) - (-10.5)) < 2);
+    assert(std::abs(list1_4->Get(4) - 0) < 2);
     auto* list2_4 = new LinkedList<int>();
     list2_4->Append(5);
     assert(list2_4->GetLength() == 1);
@@ -131,17 +131,17 @@ void LinkedListTest(){
     auto* list1_5 = new LinkedList<float>(arr10, 5);
     list1_5->Prepend(3.5);
     assert(list1_5->GetLength() == 6);
-    assert(round_float(list1_5->Get(0), 2) == round_float(3.5, 2));
-    assert(round_float(list1_5->Get(1), 2) == round_float(5.5, 2));
+    assert(std::abs(list1_5->Get(0) - 3.5) < 2);
+    assert(std::abs(list1_5->Get(1) - 5.5) < 2);
     list1_5->Delete_LinkedList();
 
     float arr11[] = {5.5, 6.6, -7.8, -9.9, 0};
     auto* list7 = new LinkedList<float>(arr11, 5);
     list7->InsertAt(4, 3);
     assert(list7->GetLength() == 6);
-    assert(round_float(list7->Get(3), 2) == round_float(4, 2));
-    assert(round_float(list7->Get(2), 2) == round_float(-7.8, 2));
-    assert(round_float(list7->Get(4), 2) == round_float(-9.9, 2));
+    assert(std::abs(list7->Get(3) - 4) < 2);
+    assert(std::abs(list7->Get(2) - (-7.8)) < 2);
+    assert(std::abs(list7->Get(4) - (-9.9)) < 2);
     list7->Delete_LinkedList();
 
     float arr12[] = {5.5, 6.6, -7.8, -9.9, 0};
@@ -150,7 +150,6 @@ void LinkedListTest(){
     auto* list2_6 = new LinkedList<float>(arr22, 5);
     auto* list3_6 = list1_6->Concat(list2_6);
     assert(list3_6->GetLength() == 10);
-    assert(round_float(list3_6->Get(5), 2) == round_float(5.5, 2));
     list1_6->Delete_LinkedList();
     list2_6->Delete_LinkedList();
     list3_6->Delete_LinkedList();

@@ -1,8 +1,11 @@
+#pragma once
 #ifndef LINKSEQUENCE_H
 #define LINKSEQUENCE_H
 
 #include "LinkedList.h"
 #include "Sequence.h"
+
+
 
 template <typename T> class ListSequence: public Sequence<T>{
 private:

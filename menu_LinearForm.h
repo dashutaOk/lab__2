@@ -1,40 +1,41 @@
+#pragma once
 #ifndef LAB_2_MENU_LINEARFORM_H
 #define LAB_2_MENU_LINEARFORM_H
 
 
 #include <string>
 #include <iostream>
-#include <stdio.h>
-using namespace std;
+#include <cstdio>
 
-const string sep = "-----------------------------------------";
+
+const std::string sep = "-----------------------------------------";
 #include "LinearForm.h"
 
 
 int chooseType(){
     int type;
-    cout << "Select type of numbers: \n"
-         << "\t1: int\n"
-         << "\t2: double\n"
-         << "\t3: complex\n\n"
-         << "\t0: Return to select class\n"
-         << "Enter a number: ";
-    cin >> type;
+    std::cout << "Select type of numbers: \n"
+              << "\t1: int\n"
+              << "\t2: double\n"
+              << "\t3: complex\n\n"
+              << "\t0: Return to select class\n"
+              << "Enter a number: ";
+    std::cin >> type;
     return type;
 }
 
 int chooseLFFunction(){
     int func;
-    cout << "What function do you want to use?: \n"
-         << "\t1: Sum of Linears form\n"
-         << "\t2: Substract of Linears form\n"
-         << "\t3: Multiplication of linears form on scalar\n"
-         << "\t4: Get value\n"
-         << "\t5: Tests\n" << endl
-         << "\t0: Return to select type\n"
-         << "Enter a number: ";
-    cin >> func;
-    cout << sep << endl;
+    std::cout << "What function do you want to use?: \n"
+              << "\t1: Sum of Linears form\n"
+              << "\t2: Substract of Linears form\n"
+              << "\t3: Multiplication of linears form on scalar\n"
+              << "\t4: Get value\n"
+              << "\t5: Tests\n" << std::endl
+              << "\t0: Return to select type\n"
+              << "Enter a number: ";
+    std::cin >> func;
+    std::cout << sep << std::endl;
     return func;
 }
 
@@ -52,7 +53,7 @@ LinearForm<T>* inputLinearForm(){
     }
     return lf;
 }
-LinearForm<complex<double>>* inputComplexLinearForm() {
+LinearForm<complex<double>>* inputComplexLinearForm(){
     int dim;
     cout << "Enter a dimension of linear form:";
     cin >> dim; cout << endl;
@@ -68,6 +69,7 @@ LinearForm<complex<double>>* inputComplexLinearForm() {
     }
     return lf;
 }
+
 
 void MenuLinearForm(){
     while(true) {

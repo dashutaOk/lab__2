@@ -1,53 +1,52 @@
+#pragma once
 #ifndef LAB_2_MENU_VECTOR_H
 #define LAB_2_MENU_VECTOR_H
 
 #include <string>
 #include <iostream>
-#include <stdio.h>
-using namespace std;
-
+#include <cstdio>
 #include "vector.h"
 #include "menu_LinearForm.h"
 
 int chooseVectorFunction(){
     int func;
-    cout << "What function do you want to use?: \n"
+    std::cout << "What function do you want to use?: \n"
          << "\t1: Sum of Vectors\n"
          << "\t2: Multiplication of scalar and vector\n"
          << "\t3: Vector Norm\n"
          << "\t4: Scalar Multiplication\n"
-         << "\t5: Vector tests\n" << endl
+         << "\t5: Vector tests\n" << std::endl
          << "\t0: Return to select type\n"
          << "Enter a number: ";
-    cin >> func;
+    std::cin >> func;
     return func;
 }
 
 template <typename T>
 Vector<T>* inputVector(){
     int dim;
-    cout << "Enter a dimension of vector:";
-    cin >> dim; cout << endl;
+    std::cout << "Enter a dimension of vector:";
+    std::cin >> dim; cout << endl;
     Vector<T>* vect = new Vector<T>();
-    cout << "Enter Coordinates (one by one):" << endl;
+    std::cout << "Enter Coordinates (one by one):" << std::endl;
     T coord;
     for(int i = 0; i < dim; i++){
-        cin >> coord;
+        std::cin >> coord;
         vect->Append(coord);
     }
     return vect;
 }
 Vector<complex<double>>* inputComplexVector() {
     int dim;
-    cout << "Enter a dimension of vector:";
-    cin >> dim; cout << endl;
+    std::cout << "Enter a dimension of vector:";
+    std::cin >> dim; std::cout << std::endl;
     Vector<complex<double>>* vect = new Vector<complex<double>>();
-    cout << "Enter Coordinates (one by one):" << endl;
+    std::cout << "Enter Coordinates (one by one):" << std::endl;
     complex<double> coord;
     double real, im;
     for(int i = 0; i < dim; i++){
-        cout << "Enter Real and Imaginary number (separated by a space): " << endl;
-        cin >> real >> im;
+        std::cout << "Enter Real and Imaginary number (separated by a space): " << std::endl;
+        std::cin >> real >> im;
         coord = complex<double>(real, im);
         vect->Append(coord);
     }
@@ -64,144 +63,144 @@ void MenuVector(){
             while (true) {
                 int function = chooseVectorFunction();
                 if (function == 1) {
-                    cout << "Enter 1 vector:" << endl;
+                    std::cout << "Enter 1 vector:" << std::endl;
                     auto* vect1 = inputVector<int>();
-                    cout << "Enter 2 vector:" << endl;
+                    std::cout << "Enter 2 vector:" << std::endl;
                     auto* vect2 = inputVector<int>();
-                    cout << "Vector 1 = " << vect1 << endl;
-                    cout << "Vector 2 = " << vect2 << endl;
+                    std::cout << "Vector 1 = " << vect1 << std::endl;
+                    std::cout << "Vector 2 = " << vect2 << std::endl;
                     auto* sum = vect1->SumOfVectors(vect2);
-                    cout << "Sum of Vector 1 and Vector 2 = " << sum << endl;
+                    std::cout << "Sum of Vector 1 and Vector 2 = " << sum << std::endl;
                 }
                 else if (function == 2) {
-                    cout << "Enter vector:" << endl;
+                    std::cout << "Enter vector:" << std::endl;
                     auto* vect = inputVector<int>();
-                    cout << "Enter scalar: " << endl;
+                    std::cout << "Enter scalar: " << std::endl;
                     int scalar;
-                    cin >> scalar;
-                    cout << "Vector = " << vect << endl;
-                    cout << "Scalar = " << scalar << endl;
+                    std::cin >> scalar;
+                    std::cout << "Vector = " << vect << std::endl;
+                    std::cout << "Scalar = " << scalar << std::endl;
                     auto vectorMult = vect->MultOnScalar(scalar);
-                    cout << "Multiplication of vector and scalar = " << vectorMult << endl;
+                    std::cout << "Multiplication of vector and scalar = " << vectorMult << std::endl;
                 }
                 else if (function == 3) {
-                    cout << "Enter vector:" << endl;
+                    std::cout << "Enter vector:" << std::endl;
                     auto* vect = inputVector<int>();
-                    cout << "Vector = " << vect << endl;
+                    std::cout << "Vector = " << vect << std::endl;
                     auto vectorNorm = vect->NormOfVector<double>();
-                    cout << "Vector norm = " << vectorNorm << endl;
+                    std::cout << "Vector norm = " << vectorNorm << std::endl;
                 }
                 else if (function == 4) {
-                    cout << "Enter 1 vector:" << endl;
+                    std::cout << "Enter 1 vector:" << std::endl;
                     auto* vect1 = inputVector<int>();
-                    cout << "Enter 2 vector:" << endl;
+                    std::cout << "Enter 2 vector:" << std::endl;
                     auto* vect2 = inputVector<int>();
-                    cout << "Vector 1 = " << vect1 << endl;
-                    cout << "Vector 2 = " << vect2 << endl;
+                    std::cout << "Vector 1 = " << vect1 << std::endl;
+                    std::cout << "Vector 2 = " << vect2 << std::endl;
                     auto mult = vect1->ScalarMult(vect2);
-                    cout << "Scalar multiplication of Vector 1 and Vector 2 = " << mult << endl;
+                    std::cout << "Scalar multiplication of Vector 1 and Vector 2 = " << mult << std::endl;
                 }
                 else if (function == 0) break;
                 else
-                    cout << "Enter the correct number!" << endl;
-                cout << sep << endl;
+                    std::cout << "Enter the correct number!" << std::endl;
+                std::cout << sep << std::endl;
             }
         }
         else if (type == 2) {
             while(true) {
                 int function = chooseVectorFunction();
                 if (function == 1) {
-                    cout << "Enter 1 vector:" << endl;
+                    std::cout << "Enter 1 vector:" << std::endl;
                     auto *vect1 = inputVector<double>();
-                    cout << "Enter 2 vector:" << endl;
+                    std::cout << "Enter 2 vector:" << std::endl;
                     auto *vect2 = inputVector<double>();
-                    cout << "Vector 1 = " << vect1 << endl;
-                    cout << "Vector 2 = " << vect2 << endl;
+                    std::cout << "Vector 1 = " << vect1 << std::endl;
+                    std::cout << "Vector 2 = " << vect2 << std::endl;
                     auto *sum = vect1->SumOfVectors(vect2);
-                    cout << "Sum of Vector 1 and Vector 2 = " << sum << endl;
+                    std::cout << "Sum of Vector 1 and Vector 2 = " << sum << std::endl;
                 }
                 else if (function == 2) {
-                    cout << "Enter vector:" << endl;
+                    std::cout << "Enter vector:" << std::endl;
                     auto *vect = inputVector<double>();
-                    cout << "Enter scalar: " << endl;
+                    std::cout << "Enter scalar: " << std::endl;
                     double scalar;
-                    cin >> scalar;
-                    cout << "Vector = " << vect << endl;
-                    cout << "Scalar = " << scalar << endl;
+                    std::cin >> scalar;
+                    std::cout << "Vector = " << vect << std::endl;
+                    std::cout << "Scalar = " << scalar << std::endl;
                     auto vectorMult = vect->MultOnScalar(scalar);
-                    cout << "Multiplication of vector and scalar = " << vectorMult << endl;
+                    std::cout << "Multiplication of vector and scalar = " << vectorMult << std::endl;
                 }
                 else if (function == 3) {
-                    cout << "Enter vector:" << endl;
+                    std::cout << "Enter vector:" << std::endl;
                     auto *vect = inputVector<double>();
-                    cout << "Vector = " << vect << endl;
+                    std::cout << "Vector = " << vect << std::endl;
                     auto vectorNorm = vect->NormOfVector<double>();
-                    cout << "Vector norm = " << vectorNorm << endl;
+                    std::cout << "Vector norm = " << vectorNorm << std::endl;
                 }
                 else if (function == 4) {
-                    cout << "Enter 1 vector:" << endl;
+                    std::cout << "Enter 1 vector:" << std::endl;
                     auto *vect1 = inputVector<double>();
-                    cout << "Enter 2 vector:" << endl;
+                    std::cout << "Enter 2 vector:" << std::endl;
                     auto *vect2 = inputVector<double>();
-                    cout << "Vector 1 = " << vect1 << endl;
-                    cout << "Vector 2 = " << vect2 << endl;
+                    std::cout << "Vector 1 = " << vect1 << std::endl;
+                    std::cout << "Vector 2 = " << vect2 << std::endl;
                     auto mult = vect1->ScalarMult(vect2);
-                    cout << "Scalar multiplication of Vector 1 and Vector 2 = " << mult << endl;
+                    std::cout << "Scalar multiplication of Vector 1 and Vector 2 = " << mult << std::endl;
                 }
                 else if (function == 0) break;
                 else
-                    cout << "Enter the correct number!" << endl;
-                cout << sep << endl;
+                    std::cout << "Enter the correct number!" << std::endl;
+                std::cout << sep << std::endl;
             }
         }
         else if (type == 3) {
             while(true) {
                 int function = chooseVectorFunction();
                 if (function == 1) {
-                    cout << "Enter 1 vector:" << endl;
+                    std::cout << "Enter 1 vector:" << std::endl;
                     auto *vect1 = inputComplexVector();
-                    cout << "Enter 2 vector:" << endl;
+                    std::cout << "Enter 2 vector:" << std::endl;
                     auto *vect2 = inputComplexVector();
-                    cout << "Vector 1 = " << vect1 << endl;
-                    cout << "Vector 2 = " << vect2 << endl;
+                    std::cout << "Vector 1 = " << vect1 << std::endl;
+                    std::cout << "Vector 2 = " << vect2 << std::endl;
                     auto *sum = vect1->SumOfVectors(vect2);
-                    cout << "Sum of Vector 1 and Vector 2 = " << sum << endl;
+                    std::cout << "Sum of Vector 1 and Vector 2 = " << sum << std::endl;
                 }
                 else if (function == 2) {
-                    cout << "Enter vector:" << endl;
+                    std::cout << "Enter vector:" << std::endl;
                     auto *vect = inputComplexVector();
-                    cout << "Enter scalar: " << endl;
+                    std::cout << "Enter scalar: " << std::endl;
                     complex<double> scalar;
                     double real, im;
-                    cout << "Enter Real and Imaginary number (separated by a space): " << endl;
-                    cin >> real >> im;
+                    std::cout << "Enter Real and Imaginary number (separated by a space): " << std::endl;
+                    std::cin >> real >> im;
                     scalar = complex<double>(real, im);
-                    cout << "Vector = " << vect << endl;
-                    cout << "Scalar = " << scalar << endl;
+                    std::cout << "Vector = " << vect << std::endl;
+                    std::cout << "Scalar = " << scalar << std::endl;
                     auto vectorMult = vect->MultOnScalar(scalar);
-                    cout << "Multiplication of vector and scalar = " << vectorMult << endl;
+                    std::cout << "Multiplication of vector and scalar = " << vectorMult << std::endl;
                 }
                 else if (function == 3) {
-                    cout << "Enter vector:" << endl;
+                    std::cout << "Enter vector:" << std::endl;
                     auto *vect = inputComplexVector();
-                    cout << "Vector = " << vect << endl;
+                    std::cout << "Vector = " << vect << std::endl;
                     auto vectorNorm = vect->NormOfVector<complex<double>>();
-                    cout << "Vector norm = " << vectorNorm << endl;
+                    std::cout << "Vector norm = " << vectorNorm << std::endl;
                 }
                 else if (function == 4) {
-                    cout << "Enter 1 vector:" << endl;
+                    std::cout << "Enter 1 vector:" << std::endl;
                     auto *vect1 = inputComplexVector();
-                    cout << "Enter 2 vector:" << endl;
+                    std::cout << "Enter 2 vector:" << std::endl;
                     auto *vect2 = inputComplexVector();
-                    cout << "Vector 1 = " << vect1 << endl;
-                    cout << "Vector 2 = " << vect2 << endl;
+                    std::cout << "Vector 1 = " << vect1 << std::endl;
+                    std::cout << "Vector 2 = " << vect2 << std::endl;
                     auto mult = vect1->ScalarMult(vect2);
-                    cout << "Scalar multiplication of Vector 1 and Vector 2 = " << mult << endl;
+                    std::cout << "Scalar multiplication of Vector 1 and Vector 2 = " << mult << std::endl;
                 }
                 else if (function == 0) break;
                 else
-                    cout << "Enter the correct number!" << endl;
-                cout << sep << endl;
+                    std::cout << "Enter the correct number!" << std::endl;
+                std::cout << sep << std::endl;
             }
         }
     }
